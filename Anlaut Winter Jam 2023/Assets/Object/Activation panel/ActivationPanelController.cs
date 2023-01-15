@@ -18,7 +18,6 @@ public class ActivationPanelController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("E was down");
             _interactiveObject.IsInteractive = false;
             _interactiveObject.Interact();
             _interactiveObject.DeleteActivationPanel();

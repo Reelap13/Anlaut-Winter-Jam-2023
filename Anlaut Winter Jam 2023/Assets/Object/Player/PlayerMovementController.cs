@@ -36,9 +36,11 @@ public class PlayerMovementController : MonoBehaviour
     private void Update()
     {
         timeBetweenJump += Time.deltaTime;
-
-        Move();
-        Jump();
+        if (Player.Instance.IsMove)
+        {
+            Move();
+            Jump();
+        }
     }
 
     private void Move()
@@ -53,7 +55,7 @@ public class PlayerMovementController : MonoBehaviour
         if (direction.magnitude >= 0.1)
             tr.rotation = Quaternion.Lerp(tr.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
 
-        Vector3 drop = new Vector3(0, rb.velocity.y, 0);
+            Vector3 drop = new Vector3(0, rb.velocity.y, 0);
         rb.velocity = drop + direction * movementSpeed;
 
         anim.SetFloat("Speed", direction.magnitude);

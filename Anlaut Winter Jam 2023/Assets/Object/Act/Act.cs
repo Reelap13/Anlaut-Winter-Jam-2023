@@ -19,7 +19,6 @@ public class Act : MonoBehaviour
 
     public void GoToTheNextStep()
     {
-        Debug.Log("Step was startedaaaa");
         StartCoroutine(StartNextStepWithDelay());
     }
 
@@ -49,6 +48,7 @@ public class Act : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
        ++_indexOfCurrentStep;
+        Debug.Log($"Step {_indexOfCurrentStep} was started");
         if (_indexOfCurrentStep >= _steps.Count)
         {
             FinishAct();

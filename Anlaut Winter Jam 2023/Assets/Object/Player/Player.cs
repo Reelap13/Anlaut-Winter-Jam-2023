@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : Singleton<Player>
 {
-    Transform tr;
-    Animator anim;
+    private Transform tr;
+    private Animator anim;
+    private bool isMove;
     private void Awake()
     {
         tr = GetComponent<Transform>();
         anim = GetComponent<Animator>();
+        isMove = true;
     }
 
     public Transform Transform
@@ -33,6 +35,18 @@ public class Player : Singleton<Player>
         get
         {
             return anim;
+        }
+    }
+
+    public bool IsMove
+    {
+        set
+        {
+            isMove = value;
+        }
+        get
+        {
+            return isMove;
         }
     }
 }
