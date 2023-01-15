@@ -26,9 +26,7 @@ public abstract class InteractiveObject : MonoBehaviour
         {
             _activationPanel = Instantiate(_activationPanelPref) as GameObject;
             _activationPanel.transform.parent = tr;
-            Debug.Log(_activationPanel.transform.position);
             _activationPanel.transform.position = tr.position + new Vector3(0, 10, 0);
-            Debug.Log(_activationPanel.transform.position);
         }
     }
 

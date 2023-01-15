@@ -72,17 +72,23 @@ public class CameraController : Singleton<CameraController>
         if (rotation.x >= 180)
             rotation.x -= 360;
 
-        if (rotation.y - playerRotation.y > _par.maxX)
+
+        if (rotation.y - playerRotation.y > _par.maxX && Math.Abs(rotation.y - playerRotation.y) <= 180)
             rotation.y = playerRotation.y + _par.maxX;
-        if (rotation.y - playerRotation.y < _par.minX)
+        else if (Math.Abs(rotation.y - playerRotation.y) >= 180)
+            if ((rotation.y + 360) - playerRotation.y > _par.maxX)
+                rotation.y = playerRotation.y + _par.maxX;
+
+        if (rotation.y - playerRotation.y < _par.minX && Math.Abs(rotation.y - playerRotation.y) <= 180)
             rotation.y = playerRotation.y + _par.minX;
-        Debug.Log("1 - " + rotation);
+        else if (Math.Abs(rotation.y - playerRotation.y) >= 180)
+            if ((rotation.y + 360) - playerRotation.y < _par.minX)
+                rotation.y = playerRotation.y + _par.minX;
 
         if (rotation.x - playerRotation.x > _par.maxY)
             rotation.x = playerRotation.x + _par.maxY;
         if (rotation.x - playerRotation.x < _par.minY)
             rotation.x = playerRotation.x + _par.minY;
-        Debug.Log("2 - " + rotation);
 
 
 
