@@ -19,7 +19,6 @@ public class ApproachingActivation: MonoBehaviour
     {
         if (obj.IsInteractive)
         {
-            Debug.Log(GetDirectionToThePlayer().magnitude);
             if (CheckDistance())
                 obj.CreateActivationPanel();
             else

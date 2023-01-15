@@ -2,22 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractiveObject : MonoBehaviour
+public abstract class InteractiveObject : MonoBehaviour
 {
     [SerializeField] private string _name;
     [SerializeField] private string _text;
     [SerializeField] private GameObject _activationPanelPref;
 
-
+    private Transform tr;
     private GameObject _activationPanel;
 
     public bool IsInteractive { get; set; } = false;
 
+    private void Start()
+    {
+        tr = GetComponent<Transform>();
+    }
+
+    public abstract void Interact();
 
     public void CreateActivationPanel()
     {
         if (_activationPanel == null)
+        {
             _activationPanel = Instantiate(_activationPanelPref) as GameObject;
+            _activationPanel.transform.parent = tr;
+            Debug.Log(_activationPanel.transform.position);
+            _activationPanel.transform.position = tr.position + new Vector3(0, 10, 0);
+            Debug.Log(_activationPanel.transform.position);
+        }
     }
 
     public void DeleteActivationPanel()
@@ -26,4 +38,8 @@ public class InteractiveObject : MonoBehaviour
             Destroy(_activationPanel);
     }
 
+    public void DestroyInteractiveObject()
+    {
+        Destroy(gameObject);
+    }
 }

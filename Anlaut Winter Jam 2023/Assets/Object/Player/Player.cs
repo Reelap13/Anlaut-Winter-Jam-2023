@@ -5,9 +5,11 @@ using UnityEngine;
 public class Player : Singleton<Player>
 {
     Transform tr;
+    Animator anim;
     private void Awake()
     {
         tr = GetComponent<Transform>();
+        anim = GetComponent<Animator>();
     }
 
     public Transform Transform
@@ -19,6 +21,18 @@ public class Player : Singleton<Player>
         get
         {
             return tr;
+        }
+    }
+
+    public Animator Animator
+    {
+        private set
+        {
+            anim = value;
+        }
+        get
+        {
+            return anim;
         }
     }
 }

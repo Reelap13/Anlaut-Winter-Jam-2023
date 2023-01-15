@@ -6,7 +6,7 @@ public class Act : MonoBehaviour
 {
     [SerializeField] private Transform _startPlayerPosition;
     [SerializeField] private List<StepOfAct> _steps;
-    [SerializeField] private string nameOfTheNextAct;
+    [SerializeField] private string _nameOfTheNextAct;
 
     private StepOfAct _currentStep;
     private int _indexOfCurrentStep;
@@ -19,19 +19,13 @@ public class Act : MonoBehaviour
 
     public void GoToTheNextStep()
     {
-        ++_indexOfCurrentStep;
-        if (_indexOfCurrentStep >= _steps.Count)
-        {
-            FinishAct();
-        }
-
-        _currentStep = _steps[_indexOfCurrentStep];
-        _currentStep.StartStep();
+        Debug.Log("Step was startedaaaa");
+        StartCoroutine(StartNextStepWithDelay());
     }
 
     public void FinishAct()
     {
-        GameController.Instance.GoToTheNextAct(nameOfTheNextAct);
+        GameController.Instance.GoToTheNextAct(_nameOfTheNextAct);
     }
 
     public StepOfAct Step
@@ -47,6 +41,22 @@ public class Act : MonoBehaviour
         get
         {
             return _startPlayerPosition.position;
+        }
+    }
+
+    private IEnumerator StartNextStepWithDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+       ++_indexOfCurrentStep;
+        if (_indexOfCurrentStep >= _steps.Count)
+        {
+            FinishAct();
+        }
+        else
+        {
+            _currentStep = _steps[_indexOfCurrentStep];
+            _currentStep.StartStep();
         }
     }
 }

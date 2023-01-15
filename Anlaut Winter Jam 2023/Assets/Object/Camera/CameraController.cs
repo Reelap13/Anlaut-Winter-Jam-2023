@@ -25,7 +25,8 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         Vector3 newCameraPosition = _playerTransform.position + _offset * _zoomLevel;
-        _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, newCameraPosition, _followingSpeed * Time.deltaTime);
+        //_cameraTransform.position = Vector3.Lerp(_cameraTransform.position, newCameraPosition, _followingSpeed * Time.deltaTime);
+        _cameraTransform.position = newCameraPosition;
 
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
         {
@@ -44,4 +45,15 @@ public class CameraController : MonoBehaviour
             _zoomLevel = _zoomLevel + _zoomSpeed <= _maxZoom ? _zoomLevel + _zoomSpeed : _maxZoom;
         }
     }
+
+    
 }
+
+
+public enum CameraState
+{
+    STATIC,
+    FOLLOWING,
+    FIRST_PERSON
+}
+
