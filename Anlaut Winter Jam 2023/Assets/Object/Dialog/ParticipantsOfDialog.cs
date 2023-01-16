@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ParticipantsOfDialog : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private AudioSource audioSource;
+
+    private void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MakeSound(AudioClip clip)
     {
-        
+
+        audioSource.clip = clip;
+        Debug.Log(audioSource.clip.name);
+        audioSource.Play();
+    }
+
+    public void StopMakingSound()
+    {
+        audioSource.Stop();
     }
 }

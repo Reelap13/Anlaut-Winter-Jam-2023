@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public class Passage : MonoBehaviour
 {
     [SerializeField] string text;
-    [SerializeField] AudioClip audio;
+    [SerializeField] AudioClip clip;
     [SerializeField] GameObject author;
 
     public string Text
@@ -17,11 +17,11 @@ public class Passage : MonoBehaviour
         }
     }
 
-    public AudioClip Audio
+    public AudioClip Clip
     {
         get
         {
-            return audio;
+            return clip;
         }
     }
 
