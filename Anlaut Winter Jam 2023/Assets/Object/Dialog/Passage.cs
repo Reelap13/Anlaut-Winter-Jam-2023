@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class Passage : MonoBehaviour
 {
-    [SerializeField] string text;
+    [SerializeField, Multiline(5)] string text;
     [SerializeField] AudioClip clip;
     [SerializeField] GameObject author;
 

@@ -8,8 +8,8 @@ public class DialogController : Singleton<DialogController>
     [SerializeField] private GameObject dialogWindow;
     [SerializeField] private TextMeshProUGUI text;
 
-    [SerializeField] private ImageController image;
-    [SerializeField] private AudioController audio;
+    [SerializeField] private DialogImageController image;
+    [SerializeField] private DialogAudioController audio;
 
     private List<Passage> passages;
     private Passage passage;
@@ -44,20 +44,23 @@ public class DialogController : Singleton<DialogController>
 
         if (passage.Author != null)
             image.ChangeImage(passage.Author);
-        if (passage.Clip != null)
-            audio.MakeSound(passage.Author, passage.Clip);
         if (passage.Text != null)
             StartCoroutine(SpawnSentence(passage.Text));
     }
 
     IEnumerator SpawnSentence(string sentence)
     {
+        if (passage.Clip != null)
+            audio.MakeSound(passage.Author, passage.Clip);
         text.text = "";
         foreach (char letter in sentence)
         {
             text.text += letter;
             yield return new WaitForSeconds(0.02f);
         }
+
+        if (passage.Clip != null)
+            audio.StopMakingSound(passage.Author);
     }
 
     private void LoadStartInfo()
