@@ -131,7 +131,6 @@ public class Outline : MonoBehaviour {
   }
 
   void Update() {
-        Debug.Log(outlineColor);
     if (needsUpdate) {
       needsUpdate = false;
 

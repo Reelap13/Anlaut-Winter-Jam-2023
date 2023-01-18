@@ -46,8 +46,6 @@ public class DialogAudioController : MonoBehaviour
         Debug.Log(participants.Count);
         foreach (ParticipantsOfDialog participant in participants)
         {
-            Debug.Log(participant.name + " " + participant.name.Length);
-            Debug.Log(name + " " + name.Length);
             if (participant.name == name)
                 return participant;
         }

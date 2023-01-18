@@ -27,10 +27,6 @@ public class CameraController : Singleton<CameraController>
     {
         _cameraTransform = GetComponent<Transform>();
         _isAnimation = false;
-        _cameraTransform.position = _thirdPerson.position;
-        _state = CameraState.THIRD_PERSON;
-        ChangeStateToThirdPerson();
-
     }
 
     private void Update()
@@ -45,6 +41,9 @@ public class CameraController : Singleton<CameraController>
             case CameraState.FIRST_PERSON:
                 FirstPersonMovement();
                 break;
+            case CameraState.STATIC:
+                StaticMovement();
+                break;
         }
     }
 
@@ -58,6 +57,11 @@ public class CameraController : Singleton<CameraController>
         {
             changeZoom();
         }
+    }
+
+    private void StaticMovement()
+    {
+        _cameraTransform.LookAt(_playerTransform);
     }
 
     private void FirstPersonMovement()
@@ -107,9 +111,6 @@ public class CameraController : Singleton<CameraController>
             rotation.x = playerRotation.x + _par.minY;
 
 
-
-
-
         _cameraTransform.rotation = Quaternion.Euler(rotation);
 
         /*if (_cameraTransform.rotation.eulerAngles.y - _playerTransform.rotation.eulerAngles.y > _par.maxX + 1)
@@ -117,7 +118,6 @@ public class CameraController : Singleton<CameraController>
         if (_cameraTransform.rotation.eulerAngles.y - _playerTransform.rotation.eulerAngles.y < _par.minX - 1)
             _cameraTransform.rotation = Quaternion.Euler(_cameraTransform.rotation.eulerAngles.x, _par.minX + _playerTransform.rotation.eulerAngles.y, _cameraTransform.rotation.eulerAngles.z);
 */
-
     }
 
     public void ChangeStateToThirdPerson()

@@ -30,8 +30,9 @@ public class DialogController : Singleton<DialogController>
         if (indexOfPassage >= 0)
         {
             audio.StopMakingSound(passage.Author);
-            StopCoroutine("SpawnSentence");
+            StopAllCoroutines();
             text.text = "";
+            Debug.Log("Stop");
         }
 
         ++indexOfPassage;

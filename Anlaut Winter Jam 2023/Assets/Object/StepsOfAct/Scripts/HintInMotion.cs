@@ -6,6 +6,6 @@ public class HintInMotion : StepOfAct
 {
     public override void StartStep()
     {
-        
+        FinishStep();
     }
 }

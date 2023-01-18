@@ -7,6 +7,7 @@ public abstract class InteractiveObject : MonoBehaviour
     [SerializeField] private string _name;
     [SerializeField] private string _text;
     [SerializeField] private GameObject _activationPanelPref;
+    [SerializeField] private Transform _activationPanelPoition;
 
     private Transform tr;
     private GameObject _activationPanel;
@@ -30,8 +31,9 @@ public abstract class InteractiveObject : MonoBehaviour
         if (_activationPanel == null)
         {
             _activationPanel = Instantiate(_activationPanelPref) as GameObject;
-            _activationPanel.transform.parent = tr;
-            _activationPanel.transform.position = tr.position + new Vector3(0, 10, 0);
+            _activationPanel.transform.position = _activationPanelPoition.position;
+            _activationPanel.GetComponent<ActivationPanelController>().InteractiveObject = this;
+            _activationPanel.GetComponent<ActivationPanelController>().Text = _text;
         }
     }
 
